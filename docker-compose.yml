@@ -1,0 +1,107 @@
+version: '3'
+
+services:
+  nginx:
+    container_name: nginx
+    build: ./docker/nginx
+    networks:
+      stage_net:
+        ipv4_address: 175.30.0.6
+    ports:
+      - 50080:80
+    depends_on:
+      - vuejs
+    volumes:
+      - ./docker/vuejs/app/dist:/var/www
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+  
+  vuejs:
+    container_name: vuejs
+    build: ./docker/vuejs
+    tty: true
+    networks:
+      stage_net:
+        ipv4_address: 175.30.0.2
+    ports:
+      - 51080:8080
+    depends_on:
+      - flask
+    volumes:
+      - ./docker/vuejs/app:/code
+
+  flask:
+    container_name: flask
+    build: ./docker/flask
+    tty: true
+    environment:
+      TZ: Asia/Tokyo
+    networks:
+      stage_net:
+        ipv4_address: 175.30.0.3
+    ports:
+      - 52080:5000
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - ./docker/flask/app:/code
+
+  redis:
+    container_name: redis
+    build: ./docker/redis
+    tty: true
+    environment:
+      TZ: Asia/Tokyo
+    networks:
+      stage_net:
+        ipv4_address: 175.30.0.7
+    ports:
+      - 56379:6379
+    volumes:
+      - ./docker/redis/data:/data
+
+  db:
+    image: mysql:5.7
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: StatisticalAnalysis
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: docker
+      TZ: 'Asia/Tokyo'
+    networks:
+      stage_net:
+        ipv4_address: 175.30.0.4
+    ports:
+      - 53306:3306
+    volumes:
+      - ./docker/db/data:/var/lib/mysql
+      - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./docker/db/sql:/docker-entrypoint-initdb.d
+    command: --innodb-use-native-aio=0
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=db
+      - PMA_USER=root
+      - PMA_PASSWORD=root
+    networks:
+      stage_net:
+        ipv4_address: 175.30.0.5
+    ports:
+      - 54080:80
+    depends_on:
+      - db
+    volumes:
+      - ./docker/phpmyadmin/sessions:/sessions
+
+networks:
+  stage_net:
+    driver: bridge
+    ipam:
+     driver: default
+     config:
+       - subnet: 175.30.0.0/24

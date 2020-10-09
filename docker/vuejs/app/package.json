@@ -1,0 +1,15 @@
+{
+  "name": "statisticalanalysis-front",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "vue": "vue",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "hanawa",
+  "license": "ISC",
+  "dependencies": {
+    "@vue/cli": "^4.4.6"
+  }
+}

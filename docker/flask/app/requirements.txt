@@ -1,0 +1,16 @@
+Flask
+flask-jwt-extended
+flask_script
+flask-cors
+sqlalchemy
+Flask-SQLAlchemy
+Flask-Migrate
+marshmallow
+flask_marshmallow
+marshmallow-sqlalchemy
+pymysql
+redis
+psycopg2
+requests
+pylint-flask
+pylint-flask-sqlalchemy
