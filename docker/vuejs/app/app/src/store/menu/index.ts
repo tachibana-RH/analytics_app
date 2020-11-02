@@ -1,14 +1,14 @@
 import { Module } from 'vuex';
-import { AnalyState, RootState } from '@/store/types';
+import { MenuState, RootState } from '@/store/types';
 import getters from './getters';
 import actions from './actions';
 import mutations from './mutations';
 
-const state: AnalyState = {
-  analy: []
+const state: MenuState = {
+  menus: []
 };
 
-export const analys: Module<AnalyState, RootState> = {
+export const menus: Module<MenuState, RootState> = {
   namespaced: true,
   state,
   getters,

@@ -9,7 +9,7 @@ from flask_jwt_extended import (
 
 prefix = '/'+str(os.path.basename(__file__)).replace('.py','')
 
-@api.route(prefix+'/estimate', methods=['GET'])
+@api.route(prefix+'/list', methods=['GET'])
 @jwt_required
 def estimate_g():
   return jsonify({
@@ -25,14 +25,19 @@ def estimate_g():
     ]
     })
 
-@api.route(prefix+'/estimate', methods=['POST'])
+@api.route(prefix+'/new', methods=['POST'])
 @jwt_required
-def estimate_p():
+def master_n():
   return jsonify({'test':"test"})
 
-@api.route(prefix+'/estimate', methods=['DELETE'])
+@api.route(prefix+'/edit', methods=['POST'])
 @jwt_required
-def estimate_d():
+def master_p():
+  return jsonify({'test':"test"})
+
+@api.route(prefix+'/delete', methods=['DELETE'])
+@jwt_required
+def master_d():
   return jsonify({'test':"test"})
 
 # @app.route('/incomes')

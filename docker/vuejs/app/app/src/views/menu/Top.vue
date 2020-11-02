@@ -2,7 +2,6 @@
   <div class="menu">
     <NavigateBar></NavigateBar>
     welcome {{name}}!
-    <router-link to="/analytics">Let's Analytics</router-link>
   </div>
 </template>>
 
@@ -15,7 +14,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { AxiosResponse } from 'axios';
-import { ApiRqsV1 } from '../methods/ApiRequestV1'
+import { ApiRqsV1 } from '../../methods/ApiRequestV1'
 
 import NavigateBar from '@/components/NavigateBar.vue';
 

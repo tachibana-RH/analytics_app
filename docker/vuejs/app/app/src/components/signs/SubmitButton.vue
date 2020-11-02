@@ -7,7 +7,7 @@
 <script lang="ts">
   import { Component, Emit, Prop, Vue } from 'vue-property-decorator';
   import { AxiosResponse, Method } from 'axios'
-  import { ApiRqsV1 } from '../methods/ApiRequestV1'
+  import { ApiRqsV1 } from '../../methods/ApiRequestV1'
 
 
   @Component

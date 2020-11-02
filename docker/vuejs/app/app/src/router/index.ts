@@ -2,8 +2,8 @@ import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
 
 import SignIn from '../views/SignIn.vue';
-import SignUp from '../views/SignUp.vue'
-import Menu from '../views/Menu.vue'
+import SignUp from '../views/SignUp.vue';
+import Menu from '../views/menu/Top.vue';
 
 Vue.use(VueRouter);
 

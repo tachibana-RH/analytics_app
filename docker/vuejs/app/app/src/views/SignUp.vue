@@ -6,7 +6,7 @@
     <TextInput placeholder="username" v-model="name"></TextInput>
     <TextInput placeholder="password" v-model="pass"></TextInput>
     <SubmitButton method="POST" path="/auth/signup" :data="{'username': name, 'password': pass}" @click="onMyButtonClicked">
-      let's sign up
+      sign up
     </SubmitButton>
   </div>
 </template>
@@ -29,8 +29,8 @@
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator';
-  import TextInput from '@/components/TextInput.vue';
-  import SubmitButton from '@/components/SubmitButton.vue';
+  import TextInput from '@/components/signs/TextInput.vue';
+  import SubmitButton from '@/components/signs/SubmitButton.vue';
   import { AxiosResponse } from 'axios';
 
   @Component({

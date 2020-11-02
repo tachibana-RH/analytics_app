@@ -39,7 +39,7 @@ class DevelopmentConfig:
   JWT_BLACKLIST_TOKEN_CHECKS = ['access', 'refresh']
 
   # SQLAlchemy
-  SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{user}:{password}@{host}/StatisticalAnalysis?charset=utf8'.format(**{
+  SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{user}:{password}@{host}/AutoClientCisPortal?charset=utf8'.format(**{
       'user': os.getenv('DB_USER', 'root'),
       'password': os.getenv('DB_PASSWORD', 'root'),
       'host': os.getenv('DB_HOST', 'localhost'),
@@ -53,14 +53,14 @@ class ProductionConfig:
   # Flask
   DEBUG = False
 
-  JWT_SECRET_KEY = 'super-secret'  # Change this!
+  JWT_SECRET_KEY = 'production-key'  # Change this!
   JWT_ACCESS_TOKEN_EXPIRES = ACCESS_EXPIRES
   JWT_REFRESH_TOKEN_EXPIRES = REFRESH_EXPIRES
   JWT_BLACKLIST_ENABLED = True
   JWT_BLACKLIST_TOKEN_CHECKS = ['access', 'refresh']
 
   # SQLAlchemy
-  SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{user}:{password}@{host}/StatisticalAnalysis?charset=utf8'.format(**{
+  SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{user}:{password}@{host}/AutoClientCisPortal?charset=utf8'.format(**{
       'user': os.getenv('DB_USER', 'root'),
       'password': os.getenv('DB_PASSWORD', 'root'),
       'host': os.getenv('DB_HOST', 'localhost'),

@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex, { StoreOptions } from 'vuex';
 import { RootState } from './types';
-import { analys } from './analytics';
+import { menus } from './menu';
 
 Vue.use(Vuex);
 
@@ -10,7 +10,7 @@ const store: StoreOptions<RootState> = {
     version: '1.0.0',
   },
   modules: {
-    analys,
+    menus,
   },
 };
 

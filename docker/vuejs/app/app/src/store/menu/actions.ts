@@ -1,15 +1,15 @@
 import { ActionTree } from 'vuex';
-import { AnalyState, RootState, Analy } from '@/store/types';
+import { MenuState, RootState, Menu } from '@/store/types';
 import { ApiRqsV1 } from '../../methods/ApiRequestV1'
 
-const actions: ActionTree<AnalyState, RootState> = {
-  set: ({ commit }, data: Analy[]) => {
+const actions: ActionTree<MenuState, RootState> = {
+  set: ({ commit }, data: Menu[]) => {
     commit('set', data);
     return true;
   },
 
-  add: async ({ commit }, analy: Analy) => {
-    await ApiRqsV1('POST', '/analytics/estimate', analy, false)
+  add: async ({ commit }, analy: Menu) => {
+    await ApiRqsV1('POST', '/menu/new', analy, false)
     .catch(err => {
       // 失敗
       console.error(err);
@@ -21,7 +21,7 @@ const actions: ActionTree<AnalyState, RootState> = {
   },
 
   remove: async ({ commit }, id: string) => {
-    await ApiRqsV1('DELETE', '/analytics/estimate', {id: id}, false)
+    await ApiRqsV1('DELETE', '/menu/delete', {id: id}, false)
     .catch(err => {
       console.error(err);
       return false;

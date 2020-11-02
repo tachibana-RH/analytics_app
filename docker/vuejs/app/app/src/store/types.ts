@@ -15,11 +15,11 @@ export interface Todo {
   text: string;
 }
 
-export interface AnalyState {
-  analy: Analy[]
+export interface MenuState {
+  menus: Menu[]
 }
 
-export interface Analy {
+export interface Menu {
   id: string;
   data: object;
 }

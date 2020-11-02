@@ -14,15 +14,14 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { AxiosResponse } from 'axios';
-import { ApiRqsV1 } from '../methods/ApiRequestV1';
-
-// import { mapGetters ,mapActions } from 'vuex'
+import { ApiRqsV1 } from '../../methods/ApiRequestV1';
 
 import NavigateBar from '@/components/NavigateBar.vue';
 import List from '@/components/List.vue';
 
-import { Refresh } from './types';
+import { Refresh } from '../types';
 
+// import { mapGetters ,mapActions } from 'vuex'
 
 interface EstimateLog {
   id: number

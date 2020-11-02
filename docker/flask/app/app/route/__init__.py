@@ -3,4 +3,4 @@ import os
 
 api = Blueprint('api', __name__)
 
-from . import auth, menu, analytics, spis
+from . import auth, menu, master
