@@ -10,5 +10,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  position: relative;
+  height: 100vh;
+  width: 100%;
 }
 </style>

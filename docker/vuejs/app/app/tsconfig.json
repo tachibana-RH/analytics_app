@@ -3,8 +3,10 @@
     "target": "esnext",
     "module": "esnext",
     "strict": true,
+    "noImplicitAny": true,
+    "typeRoots" : ["src/@types", "node_modules/@types"],
     "jsx": "preserve",
-    "importHelpers": true,
+    "importHelpers": false,
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "skipLibCheck": true,
@@ -16,6 +18,7 @@
       "webpack-env",
       "jest",
       "node",
+      "vuetify"
     ],
     "paths": {
       "@/*": [

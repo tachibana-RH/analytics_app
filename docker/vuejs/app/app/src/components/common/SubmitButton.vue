@@ -1,7 +1,10 @@
 <template>
-  <button @click="onClick">
+  <!-- <button @click="onClick">
     <slot></slot>
-  </button>
+  </button> -->
+  <md-button @click="onClick">
+    <slot></slot>
+  </md-button>
 </template>
 
 <script lang="ts">

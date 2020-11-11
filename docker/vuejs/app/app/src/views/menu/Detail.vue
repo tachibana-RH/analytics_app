@@ -16,8 +16,8 @@ import { Component, Vue } from 'vue-property-decorator';
 import { AxiosResponse } from 'axios';
 import { ApiRqsV1 } from '../../methods/ApiRequestV1';
 
-import NavigateBar from '@/components/NavigateBar.vue';
-import List from '@/components/List.vue';
+import NavigateBar from '@/components/common/NavigateBar.vue';
+import List from '@/components/menu/List.vue';
 
 import { Refresh } from '../types';
 
@@ -54,7 +54,7 @@ export class Estimate extends Vue {
       .catch(err=>{this.$router.push('/');});
 
     const res2: any = 
-      await ApiRqsV1('GET', '/analytics/estimate', {}, false)
+      await ApiRqsV1('GET', '/menus/detail', {}, false)
       .catch(err=>{this.$router.push('/');});
 
     //  this.analysLogs = res2['data'];

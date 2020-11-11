@@ -29,8 +29,8 @@
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator';
-  import TextInput from '@/components/signs/TextInput.vue';
-  import SubmitButton from '@/components/signs/SubmitButton.vue';
+  import TextInput from '@/components/common/TextInput.vue';
+  import SubmitButton from '@/components/common/SubmitButton.vue';
   import { AxiosResponse } from 'axios';
 
   @Component({

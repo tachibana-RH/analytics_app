@@ -20,4 +20,4 @@ def index():
   if data == []:
     return jsonify({'name': None}), 404
 
-  return jsonify({'name': data['name']}), 200
+  return jsonify({'name': data['name'], 'clients': []}), 200

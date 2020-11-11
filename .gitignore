@@ -1,3 +1,4 @@
 .DS_Store
 docker/db/data/*
+docker/redis/data/appendonly.aof
 git_switch*

@@ -1,5 +1,8 @@
 <template>
-  <input type="text" :placeholder="placeholder" v-model="textValue">
+  <md-field>
+    <label>{{ placeholder }}</label>
+    <md-input :name="name" :type="type" v-model="textValue"></md-input>
+  </md-field>
 </template>
 
 <script lang="ts">
@@ -7,7 +10,10 @@
 
   @Component
   export default class TextInput extends Vue {
-
+    @Prop()
+    public name?: string;
+    @Prop()
+    public type?: string;
     @Prop()
     public placeholder?: string;
 

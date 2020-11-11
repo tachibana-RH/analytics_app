@@ -39,7 +39,7 @@ class DevelopmentConfig:
   JWT_BLACKLIST_TOKEN_CHECKS = ['access', 'refresh']
 
   # SQLAlchemy
-  SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{user}:{password}@{host}/AutoClientCisPortal?charset=utf8'.format(**{
+  SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{user}:{password}@{host}/AutoClient?charset=utf8'.format(**{
       'user': os.getenv('DB_USER', 'root'),
       'password': os.getenv('DB_PASSWORD', 'root'),
       'host': os.getenv('DB_HOST', 'localhost'),
@@ -60,7 +60,7 @@ class ProductionConfig:
   JWT_BLACKLIST_TOKEN_CHECKS = ['access', 'refresh']
 
   # SQLAlchemy
-  SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{user}:{password}@{host}/AutoClientCisPortal?charset=utf8'.format(**{
+  SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{user}:{password}@{host}/AutoClient?charset=utf8'.format(**{
       'user': os.getenv('DB_USER', 'root'),
       'password': os.getenv('DB_PASSWORD', 'root'),
       'host': os.getenv('DB_HOST', 'localhost'),
