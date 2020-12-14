@@ -3,7 +3,8 @@
     <!-- <p class="signout" @click="onSignOutClicked">sign out</p> -->
     <md-menu md-direction="bottom-end">
       <md-button @click="onSignOutClicked">sign out</md-button>
-      <md-button v-if="isNotCreateDisplay" @click="onCreateClicked">create new client</md-button>
+      <md-button v-show="!isCreateDisplay" @click="onCreateClicked">create new client</md-button>
+      <md-button v-show="isCreateDisplay" @click="onBackTopPage">back clients list</md-button>
     </md-menu>
     <md-menu md-size="big" md-direction="top-start" style="float: right;">
       <md-button class="md-icon-button" md-menu-trigger>
@@ -49,22 +50,26 @@ import { ApiRqsV1 } from '../../methods/ApiRequestV1'
 export default class NavigateBar extends Vue {
 
   @Prop()
-  public name!: string;
-
+  private name!: string;
   @Prop()
-  public isNotCreateDisplay!: boolean;
+  private isCreateDisplay!: boolean;
 
   public created(): void {
 
   }
 
-  public async onSignOutClicked(): Promise<void> {
+  private async onSignOutClicked(): Promise<void> {
     const result = await ApiRqsV1('DELETE', '/auth/signout', {}, false).catch(err=>{console.log(err);});
     const result2 = await ApiRqsV1('DELETE', '/auth/signout_refresh', {}, true).catch(err=>{console.log(err);});
     this.$router.push('/');
   }
 
-  public async onCreateClicked(): Promise<void> {
+  private async onCreateClicked(): Promise<void> {
+    this.$router.push('/create');
+  }
+
+  private onBackTopPage(): void {
+    this.$router.push('/menu');
   }
 }
 </script>

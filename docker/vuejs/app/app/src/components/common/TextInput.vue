@@ -11,11 +11,11 @@
   @Component
   export default class TextInput extends Vue {
     @Prop()
-    public name?: string;
+    private name?: string;
     @Prop()
-    public type?: string;
+    private type?: string;
     @Prop()
-    public placeholder?: string;
+    private placeholder?: string;
 
     /** モデルバインドのために記述必須 */
     @Prop()

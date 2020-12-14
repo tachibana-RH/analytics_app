@@ -50,16 +50,13 @@ export class Estimate extends Vue {
 
   public async beforeCreate(): Promise<void> {
     const res1: any = 
-      await ApiRqsV1('POST', '/auth/refresh', {}, true)
-      .catch(err=>{this.$router.push('/');});
-
+      await ApiRqsV1('POST', '/auth/refresh', {}, true).catch(err=>{this.$router.push('/');});
     const res2: any = 
-      await ApiRqsV1('GET', '/menus/detail', {}, false)
-      .catch(err=>{this.$router.push('/');});
+      await ApiRqsV1('GET', '/menus/detail', {}, false).catch(err=>{this.$router.push('/');});
 
     //  this.analysLogs = res2['data'];
     //  this.analysSet(res2['data']);
     console.debug(res2['data']);
-  }  
+  }
 }
 </script>

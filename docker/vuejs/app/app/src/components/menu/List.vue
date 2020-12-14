@@ -23,7 +23,7 @@ import { Component, Vue } from 'vue-property-decorator';
   
 })
 export default class List extends Vue {
-  public items!: object;
+  private items!: object;
 
 }
 </script>

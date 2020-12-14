@@ -7,7 +7,6 @@ import VueMaterial from 'vue-material';
 // import { MdButton, MdContent, MdTabs } from 'vue-material/dist/components';
 import 'vue-material/dist/vue-material.min.css';
 import 'vue-material/dist/theme/default.css';
-import vuetify from './plugins/vuetify';
 
 Vue.use(VueMaterial);
 Vue.config.productionTip = false;

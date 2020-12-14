@@ -1,11 +1,11 @@
 <template>
   <div class="menu">
-    <NavigateBar :name="name" :isNotCreateDisplay="true"></NavigateBar>
+    <NavigateBar :name="name" :isCreateDisplay="false"></NavigateBar>
     <div class="contents">
       <md-empty-state v-if="clients.length === 0"
         md-label="Create your first project"
         md-description="Creating project, you'll be able to upload your design and collaborate with people.">
-        <md-button class="md-primary md-raised">Create first client</md-button>
+        <md-button class="md-primary md-raised" @click="onCreate">Create first client</md-button>
       </md-empty-state>
     </div>
   </div>
@@ -33,14 +33,18 @@ import NavigateBar from '@/components/common/NavigateBar.vue';
   },
 })
 export default class Menu extends Vue {
-  private name: string = '';
-  private clients: object = [];
+    private name: string = '';
+    private clients: object = [];
   
-  public async beforeCreate(): Promise<void> {
-    const res1: any = await ApiRqsV1('POST', '/auth/refresh', {}, true).catch(err=>{this.$router.push('/');});
-    const res2: any = await ApiRqsV1('GET', '/menus', {}, false).catch(err=>{this.$router.push('/');});
-    this.name = res2['data']['name'];
-    this.clients = res2['data']['clients'];
-  }
+    public async beforeCreate(): Promise<void> {
+        const res: any = await ApiRqsV1('GET', '/menus', {}, false)
+            .catch(err => {this.$router.push({name:'signin'});});
+        this.name = res['data']['f_user_name'];
+        this.clients = res['data']['clients'];
+    }
+
+    private onCreate() {
+        this.$router.push({name: 'menu.create'});
+    }
 }
 </script>

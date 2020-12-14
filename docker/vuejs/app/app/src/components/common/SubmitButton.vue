@@ -1,7 +1,4 @@
 <template>
-  <!-- <button @click="onClick">
-    <slot></slot>
-  </button> -->
   <md-button @click="onClick">
     <slot></slot>
   </md-button>
@@ -16,11 +13,11 @@
   @Component
   export default class SubmitButton extends Vue {
     @Prop()
-    public method!: Method;
+    private method!: Method;
     @Prop()
-    public path!: string;
+    private path!: string;
     @Prop()
-    public data?: object;
+    private data?: object;
 
     private response!: Promise<AxiosResponse>;
 

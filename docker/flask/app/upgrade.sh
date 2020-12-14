@@ -6,4 +6,5 @@ export DB_PORT=3306
 export FLASK_ENV=development
 export FLASK_APP=./main.py
 
+flask db migrate
 flask db upgrade

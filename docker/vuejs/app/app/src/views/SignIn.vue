@@ -6,7 +6,7 @@
     <div class="contents">
       <TextInput placeholder="username" type="text" v-model="name"></TextInput>
       <TextInput placeholder="password" type="password" v-model="pass"></TextInput>
-      <SubmitButton method="POST" path="/auth/signin" :data="{username: name, password: pass}" @click="onMyButtonClicked">
+      <SubmitButton method="POST" path="/auth/signin" :data="{f_user_name: name, f_password: pass}" @click="onMyButtonClicked">
         sign in
       </SubmitButton>
     </div>
