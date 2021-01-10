@@ -2,3 +2,5 @@
 docker/db/data/*
 docker/redis/data/appendonly.aof
 git_switch*
+.ipynb_checkpoints
+__pycache__

@@ -61,7 +61,7 @@ services:
       - ./docker/redis/data:/data
 
   db:
-    image: mysql:5.7
+    image: mysql:8.0.19
     container_name: db
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -76,7 +76,8 @@ services:
       - 53306:3306
     volumes:
       - ./docker/db/data:/var/lib/mysql
-      - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./docker/db/logs:/var/log/mysql
+      - ./docker/db/my.cnf:/etc/my.cnf
       - ./docker/db/sql:/docker-entrypoint-initdb.d
     command: --innodb-use-native-aio=0
 
@@ -97,6 +98,16 @@ services:
       - db
     volumes:
       - ./docker/phpmyadmin/sessions:/sessions
+  
+  jupyterlab:
+    build: ./docker/jupyterlab
+    container_name: jupyterlab
+    volumes:
+      - ./docker/jupyterlab/books:/content
+    working_dir: /content
+    ports:
+      - 58888:8888
+    command: jupyter lab --ip=0.0.0.0 --allow-root --no-browser --NotebookApp.token=''
 
 networks:
   stage_net:
