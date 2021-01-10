@@ -5,19 +5,19 @@ class User(db.Model):
 
   __tablename__ = 'users'
 
-  id = db.Column(db.Integer, primary_key=True)
-  name = db.Column(db.String(255), nullable=False)
-  password = db.Column(db.String(255), nullable=False)
-  created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
-  updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now, onupdate=datetime.now)
+  f_user_id = db.Column(db.String(15), nullable=False, primary_key=True)
+  f_user_name = db.Column(db.String(255), nullable=False)
+  f_password = db.Column(db.String(255), nullable=False)
+  f_created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
+  f_updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now, onupdate=datetime.now)
 
   def __repr__(self):
-    return '<User %r>' % self.name
+    return '<User %r>' % self.f_user_name
 
 class UserSchema(msmlw.SQLAlchemySchema):
   class Meta:
     model = User
-    fields = ('id', 'name', 'password')
+    fields = ('f_user_id', 'f_user_name', 'f_password')
 
 class UserOperater():
 
@@ -35,22 +35,22 @@ class UserOperater():
 
   def getUser(self, user):
     # select * from users where name=${user.name}
-    result = db.session.query(User).filter_by(name=user['name']).first()
+    result = db.session.query(User).filter_by(f_user_name=user['f_user_name']).first()
     if result == None:
       return []
     else:
       return self.user_schema.jsonify(result).json
 
-  def getUserFromID(self, aId):
-    result = db.session.query(User).filter_by(id=aId).first()
+  def getUserFromID(self, _Id):
+    result = db.session.query(User).filter_by(f_user_id=_Id).first()
     if result == None:
       return []
     else:
       return self.user_schema.jsonify(result).json
 
-  def isExistUser(self, user):
+  def isExistUser(self, _user):
     # select * from users where name=${user.name}
-    result = db.session.query(User).filter_by(name=user['name']).first()
+    result = db.session.query(User).filter_by(f_user_name=_user['f_user_name']).first()
     if result == None:
       return False
     else:
@@ -59,7 +59,7 @@ class UserOperater():
   def isUnAuthUser(self, user):
     # select * from users where name=${user.name} password=${user.password}
     result = db.session.query(User).filter_by(
-      name=user['name'], password=user['password']).first()
+      f_user_name=user['f_user_name'], f_password=user['f_password']).first()
     if result == None:
       return True
     else:
@@ -67,8 +67,8 @@ class UserOperater():
 
   def registUser(self, user):
     record = User(
-      name = user['name'],
-      password = user['password']
+      f_user_name = user['f_user_name'],
+      f_password = user['f_password']
     )
     # insert into users(name, password) values(...)
     db.session.add(record)

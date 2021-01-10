@@ -7,6 +7,6 @@ export FLASK_ENV=development
 export FLASK_APP=./main.py
 
 # 初回はコメントアウトを外す
-# flask db init
+flask db init
 flask db migrate
 flask db upgrade

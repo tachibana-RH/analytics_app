@@ -20,9 +20,9 @@ UserTb = UserOperater()
 
 @api.route(prefix+'/signup', methods=['POST'])
 def signup():
-    username = request.json.get('username', None)
-    password = request.json.get('password', None)
-    model = {'name': username, 'password': password}
+    username = request.json.get('f_user_name', None)
+    password = request.json.get('f_password', None)
+    model = {'f_user_name': username, 'f_password': password}
 
     if UserTb.isExistUser(user=model):
         return jsonify({"msg": "this username is already exist"}), 401
@@ -35,9 +35,9 @@ def signup():
 # a refresh token
 @api.route(prefix+'/signin', methods=['POST'])
 def signin():
-    username = request.json.get('username', None)
-    password = request.json.get('password', None)
-    model = {'name': username, 'password': password}
+    username = request.json.get('f_user_name', None)
+    password = request.json.get('f_password', None)
+    model = {'f_user_name': username, 'f_password': password}
 
     if UserTb.isUnAuthUser(user=model):
         return jsonify({"msg": "Bad username or password"}), 401
@@ -48,8 +48,8 @@ def signin():
     # so they will get automatically removed after they expire. We will set
     # everything to be automatically removed shortly after the token expires
     user = UserTb.getUser(user=model)
-    access_token = create_access_token(identity=user['id'], fresh=True)
-    refresh_token = create_refresh_token(identity=user['id'])
+    access_token = create_access_token(identity=user['f_user_id'], fresh=True)
+    refresh_token = create_refresh_token(identity=user['f_user_id'])
 
     access_jti = get_jti(encoded_token=access_token)
     refresh_jti = get_jti(encoded_token=refresh_token)
@@ -87,15 +87,15 @@ def refresh():
 # generating new refresh tokens, which entirely defeats their point.
 @api.route(prefix+'/fresh-login', methods=['POST'])
 def fresh_signin():
-    username = request.json.get('username', None)
-    password = request.json.get('password', None)
-    model = {'name': username, 'password': password}
+    username = request.json.get('f_user_name', None)
+    password = request.json.get('f_password', None)
+    model = {'f_user_name': username, 'f_password': password}
 
     if User.isUnAuthUser(model):
         return jsonify({"msg": "Bad username or password"}), 401
     
-    user = User.getUser(model.name)
-    new_token = create_access_token(identity=user.id, fresh=True)
+    user = User.getUser(model.f_user_name)
+    new_token = create_access_token(identity=user.f_user_id, fresh=True)
     access_jti = get_jti(encoded_token=new_token)
     revoked_store.set(access_jti, 'false', ACCESS_EXPIRES*1.2)
 
