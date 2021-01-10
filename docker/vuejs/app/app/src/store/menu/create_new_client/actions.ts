@@ -1,15 +1,15 @@
 import { ActionTree } from 'vuex';
 import { RootState } from '@/store/types';
-import { ClientChild, ClientChildState } from './types'
+import { ChildClient, ChildClientState } from './types'
 import { ApiRqsV1 } from '../../../methods/ApiRequestV1'
 
-const actions: ActionTree<ClientChildState, RootState> = {
-  set: ({ commit }, data: ClientChild[]) => {
+const actions: ActionTree<ChildClientState, RootState> = {
+  set: ({ commit }, data: ChildClient[]) => {
     commit('set', data);
     return true;
   },
 
-  add: async ({ commit }, data: ClientChild) => {
+  add: async ({ commit }, data: ChildClient) => {
     commit('add', data);
     return true;
   },
@@ -19,8 +19,8 @@ const actions: ActionTree<ClientChildState, RootState> = {
     return true;
   },
 
-  regist: async ({ commit }, data: ClientChild[]) => {
-    await ApiRqsV1('POST', '/menu/create/regist', data, false)
+  regist: async ({ commit }, data: ChildClient[]) => {
+    await ApiRqsV1('POST', '/menus/create/regist', data, false)
     .catch(err => {
       // 失敗
       console.error(err);

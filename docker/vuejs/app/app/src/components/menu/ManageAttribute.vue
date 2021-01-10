@@ -32,7 +32,7 @@
 <script lang="ts">
 import { Component, Emit, Prop, Vue } from 'vue-property-decorator';
 import TextInput from '@/components/common/TextInput.vue';
-import { ClientChild } from '../../store/menu/create_new_client/types';
+import { ChildClient } from '../../store/menu/create_new_client/types';
 
 @Component({
     components: {
@@ -41,6 +41,6 @@ import { ClientChild } from '../../store/menu/create_new_client/types';
 })
 export default class ManageAttribute extends Vue {
     @Prop()
-    private value!: ClientChild;
+    private value!: ChildClient;
 }
 </script>>

@@ -1,18 +1,18 @@
 import { Module } from 'vuex';
 import { RootState } from '@/store/types';
-import { ClientChildState } from './types'
+import { ChildClientState } from './types'
 import getters from './getters';
 import actions from './actions';
 import mutations from './mutations';
 
-const state: ClientChildState = {
+const state: ChildClientState = {
   f_client_name: "",
   f_category: "",
   f_client_origin: "",
-  clientchilds: []
+  childclients: []
 };
 
-export const ClientChildModule: Module<ClientChildState, RootState> = {
+export const ChildClientModule: Module<ChildClientState, RootState> = {
   namespaced: true,
   state,
   getters,

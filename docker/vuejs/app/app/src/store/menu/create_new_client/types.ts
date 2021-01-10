@@ -1,11 +1,11 @@
-export interface ClientChildState {
+export interface ChildClientState {
   f_client_name: string
   f_category: string
   f_client_origin: string
-  clientchilds: ClientChild[]
+  childclients: ChildClient[]
 }
 
-export interface ClientChild {
+export interface ChildClient {
   f_child_index: number;
   f_child_client_name: string;
   f_manage_type: string;

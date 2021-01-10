@@ -1,20 +1,20 @@
 import { MutationTree } from 'vuex';
-import { ClientChild, ClientChildState } from './types'
+import { ChildClient, ChildClientState } from './types'
 
-const mutations: MutationTree<ClientChildState> = {
-  set: (state, data: ClientChild[]) => {
-    state.clientchilds = data;
+const mutations: MutationTree<ChildClientState> = {
+  set: (state, data: ChildClient[]) => {
+    state.childclients = data;
   },
-  add: (state, data: ClientChild) => {
-    state.clientchilds.push(data);
-    state.clientchilds = state.clientchilds.map((v, i) => {
+  add: (state, data: ChildClient) => {
+    state.childclients.push(data);
+    state.childclients = state.childclients.map((v, i) => {
       v.f_child_index = i + 1;
       return v;
     });
   },
   remove: (state, idx: number) => {
-    state.clientchilds = state.clientchilds.filter((e: ClientChild) => e.f_child_index !== idx);
-    state.clientchilds = state.clientchilds.map((v, i) => {
+    state.childclients = state.childclients.filter((e: ChildClient) => e.f_child_index !== idx);
+    state.childclients = state.childclients.map((v, i) => {
       v.f_child_index = i + 1;
       return v;
     });

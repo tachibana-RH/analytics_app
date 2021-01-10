@@ -8,9 +8,9 @@
                 <TextInput class="origin" placeholder="Origin URL" v-model="clientChildState.f_client_origin"></TextInput>
             </div>
             <v-expansion-panels>
-                <draggable class="panels" v-model="clientChildState.clientchilds" group="clientsGroup" @start="drag=true" @end="drag=true" :animation="200">
+                <draggable class="panels" v-model="clientChildState.childclients" group="clientsGroup" @start="drag=true" @end="drag=true" :animation="200">
                     <v-expansion-panel
-                    v-for="(clientChild, i) in clientChildState.clientchilds"
+                    v-for="(clientChild, i) in clientChildState.childclients"
                     :key="i"
                     >
                     <div class="wrap-remove-client">
@@ -19,11 +19,11 @@
                         </a>
                     </div>
                     <v-expansion-panel-header>
-                        <div><TextInput class="title" placeholder="Title" v-model="clientChildState.clientchilds[i].f_child_client_name"></TextInput></div>
+                        <div><TextInput class="title" placeholder="Title" v-model="clientChildState.childclients[i].f_child_client_name"></TextInput></div>
                     </v-expansion-panel-header>
                     <v-expansion-panel-content>
-                        <ManageAttribute v-model="clientChildState.clientchilds[i]"></ManageAttribute>
-                        <InputType v-model="clientChildState.clientchilds[i]"></InputType>
+                        <ManageAttribute v-model="clientChildState.childclients[i]"></ManageAttribute>
+                        <InputType v-model="clientChildState.childclients[i]"></InputType>
                     </v-expansion-panel-content>
                     </v-expansion-panel>
                 </draggable>
@@ -76,8 +76,8 @@ import TextInput from '@/components/common/TextInput.vue';
 import { ApiRqsV1 } from '../../methods/ApiRequestV1';
 
 import { State, Action, Getter } from 'vuex-class';
-import { ClientChildState, ClientChild } from '../../store/menu/create_new_client/types';
-const namespace: string = 'ClientChildModule';
+import { ChildClientState, ChildClient } from '../../store/menu/create_new_client/types';
+const namespace: string = 'ChildClientModule';
 
 @Component({
     components: {
@@ -90,7 +90,7 @@ const namespace: string = 'ClientChildModule';
 })
 export default class CreateNewClient extends Vue {
 
-    @State('ClientChildModule') private clientChildState!: ClientChildState;
+    @State('ClientChildModule') private clientChildState!: ChildClientState;
     @Action('set', { namespace }) private setClientChild: any;
     @Action('add', { namespace }) private addClientChild: any;
     @Action('remove', { namespace }) private remClientChild: any;
@@ -99,7 +99,7 @@ export default class CreateNewClient extends Vue {
 
     private name: string = '';
     private drag!: boolean;
-    private initData: ClientChild[] = [
+    private initData: ChildClient[] = [
         {
             f_child_index: 1,
             f_child_client_name: "",
@@ -119,7 +119,7 @@ export default class CreateNewClient extends Vue {
     }
 
     private onAddInstruction(): void {
-        let baseData: ClientChild = {
+        let baseData: ChildClient = {
             f_child_index: 0,
             f_child_client_name: "",
             f_manage_type: "",
@@ -130,13 +130,13 @@ export default class CreateNewClient extends Vue {
         baseData.f_child_index = this.sizeClientChild === 0 ?
                                     1 : this.lastClientChild.f_child_index + 1;
         this.addClientChild(baseData);
-        console.log(this.clientChildState.clientchilds);
+        console.log(this.clientChildState.childclients);
     }
 
     private onRemoveInstruction(i: number): void {
         this.sizeClientChild !== 1 ?
             this.remClientChild(i+1):
-            console.log(this.clientChildState.clientchilds);
+            console.log(this.clientChildState.childclients);
     }
 
 }

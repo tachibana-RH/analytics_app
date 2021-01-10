@@ -33,7 +33,7 @@
 <script lang="ts">
 import { Component, Emit, Prop, Vue } from 'vue-property-decorator';
 import TextInput from '@/components/common/TextInput.vue';
-import { ClientChild } from '../../store/menu/create_new_client/types';
+import { ChildClient } from '../../store/menu/create_new_client/types';
 
 @Component({
     components: {
@@ -44,6 +44,6 @@ export default class TextInputDynamic extends Vue {
     private type: string = "text";
 
     @Prop()
-    value!: ClientChild;
+    value!: ChildClient;
 }
 </script>>

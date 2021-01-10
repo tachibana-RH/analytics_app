@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuex, { StoreOptions } from 'vuex';
 import { RootState } from './types';
 import { ClientModule } from '@/store/menu/top';
-import { ClientChildModule } from '@/store/menu/create_new_client';
+import { ChildClientModule } from '@/store/menu/create_new_client';
 
 Vue.use(Vuex);
 
@@ -12,7 +12,7 @@ const store: StoreOptions<RootState> = {
   },
   modules: {
     ClientModule,
-    ClientChildModule
+    ChildClientModule
   },
 };
 

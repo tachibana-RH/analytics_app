@@ -1,16 +1,16 @@
 import { GetterTree } from 'vuex';
 import { RootState } from '@/store/types';
-import { ClientChildState } from './types'
+import { ChildClientState } from './types'
 
-const getters: GetterTree<ClientChildState, RootState> = {
-  size: (state: ClientChildState) => {
-    return state.clientchilds.length;
+const getters: GetterTree<ChildClientState, RootState> = {
+  size: (state: ChildClientState) => {
+    return state.childclients.length;
   },
-  data: (state: ClientChildState) => {
-    return state.clientchilds;
+  data: (state: ChildClientState) => {
+    return state.childclients;
   },
-  last: (state: ClientChildState) => {
-    return state.clientchilds.slice(-1)[0];
+  last: (state: ChildClientState) => {
+    return state.childclients.slice(-1)[0];
   }
 };
 
