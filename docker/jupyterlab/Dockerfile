@@ -1,19 +1,25 @@
-FROM python:3.7
+FROM ubuntu:18.04
 
-ENV PYTHONUNBUFFERED 1
-ENV DEBIAN_FRONTEND noninteractive
+# ENV PYTHONUNBUFFERED 1
+# ENV DEBIAN_FRONTEND noninteractive
 
 USER root
 
-RUN apt update -y && apt install -y sudo vim
+RUN apt update -y && \
+    apt install -y sudo vim build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libsqlite3-dev libreadline-dev libffi-dev wget libbz2-dev
 
-# RUN apt install -y locales
-# RUN locale-gen ja_JP.UTF-8
-# RUN echo "export LANG='ja_JP.UTF-8'" >> "${HOME}/.profile" && \
-#     echo "export LANG='ja_JP.UTF-8'" >> "${HOME}/.bashrc"
+RUN apt install -y locales
+RUN locale-gen ja_JP.UTF-8
+RUN echo "export LANG='ja_JP.UTF-8'" >> "${HOME}/.profile" && \
+    echo "export LANG='ja_JP.UTF-8'" >> "${HOME}/.bashrc"
 
-# RUN apt install -y fonts-noto-cjk
-# RUN apt install -y texlive texlive-latex-extra texlive-xetex texlive-lang-japanese pandoc
+RUN apt install -y fonts-noto-cjk
+RUN apt install -y texlive texlive-latex-extra texlive-xetex texlive-lang-japanese pandoc
+
+RUN wget https://www.python.org/ftp/python/3.7.9/Python-3.7.9.tgz
+RUN tar -xzvf Python-3.7.4.tgz
+RUN cd Python-3.7.9 && ./configure --enable-optimizations && make -j && make altinstall
+RUN python3.7 --version
 
 RUN pip install --upgrade pip && pip install jupyterlab
 # matplotlib pandas sklearn
