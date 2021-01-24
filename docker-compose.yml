@@ -107,7 +107,6 @@ services:
     working_dir: /content
     ports:
       - 58888:8888
-    command: jupyter lab --ip=0.0.0.0 --allow-root --no-browser --NotebookApp.token=''
 
 networks:
   stage_net:
